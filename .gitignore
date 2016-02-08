@@ -1,0 +1,22 @@
+# git
+.gitconfig
+
+# Bash
+.bash_history
+.bash_logout
+.bashrc
+
+# vim
+.vim/
+.viminfo
+
+# SQLite
+*.sqlite3
+
+# Python
+*.pyc
+
+# Hidden files
+.config/
+.profile
+.two1/
