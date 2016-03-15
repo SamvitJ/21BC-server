@@ -29,7 +29,7 @@ def endpoint1():
     return "Welcome to the free access endpoint\n"
 
 ## Alternative: payable endpoint
-@app.route('/payable')
+@app.route('/payable', methods=['GET', 'PUT'])
 @payment.required(100)
 def endpoint2():
     print("REQUEST HEADERS ----------")
