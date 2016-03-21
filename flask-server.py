@@ -21,27 +21,29 @@ def enable_cors(response):
     print(response.headers)
     return response
 
-## Default: free access
+## Free access
 @app.route('/')
-def endpoint1():
-    print("REQUEST HEADERS ----------")
+def endpoint_free():
+    print("REQUEST (FREE) HEADERS ----------")
     print(request.headers)
     return "Welcome to the free access endpoint\n"
 
-## Alternative: payable endpoint
+## Payable endpoint - initial fee
 @app.route('/payable', methods=['GET', 'PUT'])
-@payment.required(100)
-def endpoint2():
-    print("REQUEST HEADERS ----------")
+@payment.required(100, Rate=10)
+def endpoint_payable():
+    print("REQUEST (PAYABLE) HEADERS ----------")
     print(request.headers)
     return "Welcome to the payable endpoint\n"
 
-@app.route('/current-temperature')
-@payment.required(50)
-def current_temperature():
-    return 'Probably about 65 degrees Fahrenheit.'
+## Payable endpoint - time-rated
+@app.route('/payable/timerated', methods=['GET', 'PUT'])
+@payment.required(10)
+def endpoint_payable_timerated():
+    print("REQUEST (PAYABLE, TIME-RATED) HEADERS ----------")
+    print(request.headers)
+    return 'Thanks for using the payable endpoint\n'
 
 ## Initialize and run the server
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
-    # app.run(host='10.8.235.166', port=80)
