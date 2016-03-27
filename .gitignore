@@ -9,6 +9,7 @@
 # vim
 .vim/
 .viminfo
+.vimrc
 
 # SQLite
 *.sqlite3
