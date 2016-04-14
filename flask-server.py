@@ -17,8 +17,7 @@ def enable_cors(response):
     response.headers['Access-Control-Allow-Origin'] = '*'
     response.headers['Access-Control-Allow-Methods'] = 'PUT, GET, POST, DELETE, OPTIONS'
     response.headers['Access-Control-Allow-Headers'] = 'Origin, Accept, Content-Type, X-Requested-With, X-CSRF-Token'
-    print("RESPONSE HEADERS ---------")
-    print(response.headers)
+    response.headers['Access-Control-Expose-Headers'] = 'Rate, Expiration, Scheme_id'
     return response
 
 ## Free access
@@ -30,7 +29,7 @@ def endpoint_free():
 
 ## Payable endpoint - initial fee
 @app.route('/payable', methods=['GET', 'PUT'])
-@payment.required(100, Rate=10)
+@payment.required(100, Rate=10, Expiration=0.00069444)
 def endpoint_payable():
     print("REQUEST (PAYABLE) HEADERS ----------")
     print(request.headers)
